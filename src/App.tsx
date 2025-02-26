@@ -10,8 +10,8 @@ import {
 
 import theme from "./theme";
 
-import { ServiceStatus } from "./custom/service";
-import { StatusAcc } from "./StatusAcc";
+import { ServiceEntity } from "./custom/service";
+import { EntityWrapper } from "./EntityWrapper";
 
 const ColBox = (props: any) => {
   return (
@@ -47,16 +47,16 @@ export function App() {
           </Grid2>
           <Grid2 size={9}>
             <ColBox>
-              <ServiceStatus showPrs={prs} title="escobar" />
-              <ServiceStatus
+              <ServiceEntity showPrs={prs} title="escobar" />
+              <ServiceEntity
                 showPrs={prs}
                 title="ai-de-energy-certificate-manager"
               />
-              <ServiceStatus
+              <ServiceEntity
                 showPrs={prs}
                 title="communication-attachment-scanner"
               />
-              <ServiceStatus
+              <ServiceEntity
                 showPrs={prs}
                 title="submission-management-anonymization-saga"
               />
@@ -75,7 +75,7 @@ import { useState } from "react";
 
 const CustomStatus = () => {
   return (
-    <StatusAcc
+    <EntityWrapper
       title="entity with status"
       href="#"
       customSummary={<Typography align="center">Custom Summary</Typography>}
@@ -86,6 +86,6 @@ const CustomStatus = () => {
         </>
       }
       icon={<AdjustIcon />}
-    ></StatusAcc>
+    ></EntityWrapper>
   );
 };

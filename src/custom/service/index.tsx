@@ -1,11 +1,11 @@
-import { StatusAcc } from "../../StatusAcc";
+import { EntityWrapper } from "../../EntityWrapper";
 import MemoryIcon from "@mui/icons-material/Memory";
 import { Details } from "./Details";
 import { Summary } from "./Summary";
 
-export const ServiceStatus = (props: any) => {
+export const ServiceEntity = (props: any) => {
   return (
-    <StatusAcc
+    <EntityWrapper
       {...props}
       icon={<MemoryIcon />}
       customSummary={<Summary {...props} />}

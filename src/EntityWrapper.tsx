@@ -16,7 +16,7 @@ import { StarBorderOutlined } from "@mui/icons-material";
  * Jeder soll diese Vorlage nutzen, um ein Status abzubilden
  */
 
-export const StatusAcc = ({
+export const EntityWrapper = ({
   icon,
   title,
   customSummary,
