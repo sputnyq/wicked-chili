@@ -13,6 +13,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Stack,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -22,6 +23,9 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
+
+import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 export const Details = ({ showPrs }: any) => {
   const successColor = "success";
@@ -108,35 +112,78 @@ export const Details = ({ showPrs }: any) => {
               marginBottom={1}
               color="textSecondary"
             >
-              Stages
+              Production
             </Typography>
-            <Grid2 container spacing={2}>
-              <Grid2 size={3}>
-                <StageTitle title="Production" />
-                <Box display={"flex"} flexDirection={"column"} gap={1}>
-                  <Env successColor={successColor} title="micro-eh-prod-k8s" />
-                  <Env successColor={successColor} title="macro-prod-aks" />
-                </Box>
-              </Grid2>
+            <Stack direction={"column"} spacing={2}>
+              <Stack direction={"row"} spacing={1}>
+                <Status
+                  color={successColor}
+                  endIcon={<SyncOutlinedIcon />}
+                  title="core-in-mwe-aks"
+                ></Status>
+                <Status
+                  color={successColor}
+                  endIcon={<SyncOutlinedIcon />}
+                  title="core-in-mwe-aks"
+                ></Status>
+                <Status
+                  color={successColor}
+                  endIcon={<SyncOutlinedIcon />}
+                  title="sandbox-dev-k8s"
+                ></Status>
+              </Stack>
 
-              <Grid2 size={3}>
-                <StageTitle title="Acceptance" />
-                <Env successColor={successColor} title="micro-eh-acc-k8s" />
-              </Grid2>
-
-              <Grid2 size={3}>
-                <StageTitle title="Development" />
-                <Env successColor={successColor} title="micro-eh-dev-k8s" />
-              </Grid2>
-
-              <Grid2 size={3}>
-                <StageTitle title="Feature" />
-                <Env
-                  successColor={successColor}
-                  title="kupo-19482-micro-eh-dev-k8s"
-                ></Env>
-              </Grid2>
-            </Grid2>
+              <Stack direction={"row"} spacing={1}>
+                <Status
+                  color={successColor}
+                  endIcon={<FavoriteBorderOutlinedIcon />}
+                  title="core-in-mwe-aks"
+                ></Status>
+                <Status
+                  color={successColor}
+                  endIcon={<FavoriteBorderOutlinedIcon />}
+                  title="core-in-mwe-aks"
+                ></Status>
+                <Status
+                  color={successColor}
+                  endIcon={<FavoriteBorderOutlinedIcon />}
+                  title="sandbox-dev-k8s"
+                ></Status>
+              </Stack>
+            </Stack>
+          </InnerCard>
+        </Grid2>
+        <Grid2 size={12}>
+          <InnerCard>
+            <Typography
+              variant="subtitle2"
+              marginBottom={1}
+              color="textSecondary"
+            >
+              Acceptance
+            </Typography>
+          </InnerCard>
+        </Grid2>
+        <Grid2 size={12}>
+          <InnerCard>
+            <Typography
+              variant="subtitle2"
+              marginBottom={1}
+              color="textSecondary"
+            >
+              Development
+            </Typography>
+          </InnerCard>
+        </Grid2>
+        <Grid2 size={12}>
+          <InnerCard>
+            <Typography
+              variant="subtitle2"
+              marginBottom={1}
+              color="textSecondary"
+            >
+              Feature
+            </Typography>
           </InnerCard>
         </Grid2>
       </Grid2>
@@ -144,7 +191,7 @@ export const Details = ({ showPrs }: any) => {
   );
 };
 
-const StageTitle = ({ title }: any) => {
+export const StageTitle = ({ title }: any) => {
   return (
     <Divider textAlign="left" sx={{ paddingBottom: 1 }}>
       <Typography variant="caption" color="textSecondary">
@@ -154,7 +201,7 @@ const StageTitle = ({ title }: any) => {
   );
 };
 
-const Env = ({ title, successColor }: any) => {
+export const Env = ({ title, successColor }: any) => {
   return (
     <Card sx={{ p: 1 }}>
       <Typography variant="subtitle2">{title}</Typography>
@@ -179,7 +226,7 @@ const Env = ({ title, successColor }: any) => {
   );
 };
 
-const Status = ({ color, title }: any) => {
+const Status = ({ color, title, endIcon }: any) => {
   const [open, setOpen] = useState(false);
 
   let icon = null;
@@ -242,14 +289,17 @@ const Status = ({ color, title }: any) => {
           </Grid2>
         </DialogContent>
       </Dialog>
-      <Button
-        size="small"
-        onClick={() => setOpen(true)}
-        startIcon={icon}
-        sx={{ paddingX: 1, justifyContent: "flex-start" }}
-      >
-        {title}
-      </Button>
+      <Box>
+        <Button
+          size="small"
+          onClick={() => setOpen(true)}
+          startIcon={icon}
+          endIcon={endIcon}
+          sx={{ paddingX: 1, justifyContent: "flex-start" }}
+        >
+          {title}
+        </Button>
+      </Box>
     </>
   );
 };
