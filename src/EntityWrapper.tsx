@@ -10,6 +10,7 @@ import {
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { StarBorderOutlined } from "@mui/icons-material";
+import { useState } from "react";
 
 /**
  *
@@ -23,8 +24,14 @@ export const EntityWrapper = ({
   customDetails,
   href = "https://www.google.com",
 }: any) => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Accordion slotProps={{ transition: { unmountOnExit: true } }}>
+    <Accordion
+      expanded={expanded}
+      onChange={() => setExpanded(!expanded)}
+      slotProps={{ transition: { unmountOnExit: true } }}
+    >
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Grid2
           height={"100%"}
@@ -58,7 +65,7 @@ export const EntityWrapper = ({
               </Typography>
             </Link>
           </Grid2>
-          <Grid2 size={8.5}>{customSummary}</Grid2>
+          <Grid2 size={8.5}>{expanded ? null : customSummary}</Grid2>
           <Grid2 size={0.5}>
             <IconButton>
               <StarBorderOutlined />

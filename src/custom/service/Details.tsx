@@ -8,6 +8,7 @@ import {
   DialogTitle,
   Divider,
   Grid2,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -18,6 +19,10 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+
+import CallSplitIcon from "@mui/icons-material/CallSplit";
+
 import DraftsIcon from "@mui/icons-material/Drafts";
 
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -26,6 +31,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 
 import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import { StatusesBox } from "../../StatusesBox";
 
 export const Details = ({ showPrs }: any) => {
   const successColor = "success";
@@ -36,14 +42,7 @@ export const Details = ({ showPrs }: any) => {
         {showPrs && (
           <>
             <Grid2 size={6}>
-              <InnerCard>
-                <Typography
-                  variant="subtitle2"
-                  color="textSecondary"
-                  marginBottom={1}
-                >
-                  Implementation Pull Requests
-                </Typography>
+              <StatusesBox title="Implementation" actions={null}>
                 <Box
                   paddingY={1}
                   display={"flex"}
@@ -54,10 +53,10 @@ export const Details = ({ showPrs }: any) => {
                   <PR />
                   <PR />
                 </Box>
-              </InnerCard>
+              </StatusesBox>
             </Grid2>
             <Grid2 size={6}>
-              <InnerCard>
+              <StatusesBox title="Deployment" actions={null}>
                 <Typography
                   variant="subtitle2"
                   color="textSecondary"
@@ -74,20 +73,13 @@ export const Details = ({ showPrs }: any) => {
                 >
                   <PR2 />
                 </Box>
-              </InnerCard>
+              </StatusesBox>
             </Grid2>
           </>
         )}
 
         <Grid2 size={12}>
-          <InnerCard>
-            <Typography
-              variant="subtitle2"
-              marginBottom={1}
-              color="textSecondary"
-            >
-              Integration
-            </Typography>
+          <StatusesBox title="Integration" actions={null}>
             <Grid2 container spacing={2}>
               <Grid2 size={3}>
                 <Status color={successColor} title="Mainline build" />
@@ -102,18 +94,11 @@ export const Details = ({ showPrs }: any) => {
                 <Status color="error" title="Last Promote" />
               </Grid2>
             </Grid2>
-          </InnerCard>
+          </StatusesBox>
         </Grid2>
 
         <Grid2 size={12}>
-          <InnerCard>
-            <Typography
-              variant="subtitle2"
-              marginBottom={1}
-              color="textSecondary"
-            >
-              Production
-            </Typography>
+          <StatusesBox title="Production" actions={null}>
             <Stack direction={"column"} spacing={2}>
               <Stack direction={"row"} spacing={1}>
                 <Status
@@ -151,40 +136,37 @@ export const Details = ({ showPrs }: any) => {
                 ></Status>
               </Stack>
             </Stack>
-          </InnerCard>
+          </StatusesBox>
         </Grid2>
         <Grid2 size={12}>
-          <InnerCard>
-            <Typography
-              variant="subtitle2"
-              marginBottom={1}
-              color="textSecondary"
-            >
-              Acceptance
-            </Typography>
-          </InnerCard>
+          <StatusesBox title="Staging" actions={null}></StatusesBox>
         </Grid2>
         <Grid2 size={12}>
-          <InnerCard>
-            <Typography
-              variant="subtitle2"
-              marginBottom={1}
-              color="textSecondary"
-            >
-              Development
-            </Typography>
-          </InnerCard>
+          <StatusesBox
+            title="Development"
+            actions={
+              <Stack direction="row" spacing={1}>
+                <IconButton size="small">
+                  <CallSplitIcon />
+                </IconButton>
+              </Stack>
+            }
+          ></StatusesBox>
         </Grid2>
         <Grid2 size={12}>
-          <InnerCard>
-            <Typography
-              variant="subtitle2"
-              marginBottom={1}
-              color="textSecondary"
-            >
-              Feature
-            </Typography>
-          </InnerCard>
+          <StatusesBox
+            title="Feature"
+            actions={
+              <Stack direction={"row"} spacing={1}>
+                <IconButton size="small">
+                  <SyncOutlinedIcon />
+                </IconButton>
+                <IconButton size="small">
+                  <DeleteOutlineOutlinedIcon />
+                </IconButton>
+              </Stack>
+            }
+          ></StatusesBox>
         </Grid2>
       </Grid2>
     </Box>
@@ -295,7 +277,6 @@ const Status = ({ color, title, endIcon }: any) => {
           onClick={() => setOpen(true)}
           startIcon={icon}
           endIcon={endIcon}
-          sx={{ paddingX: 1, justifyContent: "flex-start" }}
         >
           {title}
         </Button>
@@ -327,14 +308,6 @@ const InfoBlock = () => {
         refs/heads/main a26e8b2fe8e7829892307bc32f5349ac1823687a
       </Typography>
     </Box>
-  );
-};
-
-const InnerCard = ({ children }: any) => {
-  return (
-    <Card elevation={0} sx={{ p: 1, height: "100%" }}>
-      {children}
-    </Card>
   );
 };
 
