@@ -22,7 +22,7 @@ const ColBox = (props: any) => {
 };
 
 export function App() {
-  const [prs, setPrs] = useState(false);
+  const [prs, setPrs] = useState(true);
 
   return (
     <ThemeProvider theme={theme}>
