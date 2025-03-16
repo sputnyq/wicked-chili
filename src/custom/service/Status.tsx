@@ -104,7 +104,7 @@ export const Status = ({ color, title, endIcon }: any) => {
             </Grid2>
             <Grid2 size={12}>
               <Card elevation={0} sx={{ height: "100%", padding: 1 }}>
-                <Stack spacing={2} direction={"row"} flexWrap={"wrap"}>
+                <Stack spacing={1} direction={"row"} flexWrap={"wrap"}>
                   <Link2 text={"Kibana"} title="Logs" />
                   <Link2
                     text={"APM"}
