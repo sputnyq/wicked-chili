@@ -17,8 +17,6 @@ import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
 import { StatusesBox } from "../../StatusesBox";
 import { Status } from "./Status";
 
-import GitHubIcon from "@mui/icons-material/GitHub";
-
 export const Details = ({ showPrs }: any) => {
   const successColor = "success";
 
@@ -28,14 +26,7 @@ export const Details = ({ showPrs }: any) => {
         {showPrs && (
           <>
             <Grid2 size={6}>
-              <StatusesBox
-                title="Implementation"
-                actions={
-                  <IconButton size="small">
-                    <GitHubIcon />
-                  </IconButton>
-                }
-              >
+              <StatusesBox title="Implementation" actions={null}>
                 <Box
                   paddingY={1}
                   display={"flex"}
@@ -131,7 +122,7 @@ export const Details = ({ showPrs }: any) => {
           <StatusesBox
             title="Development"
             actions={
-              <IconButton size="small">
+              <IconButton color="info" size="small">
                 <CallSplitIcon />
               </IconButton>
             }
@@ -142,7 +133,7 @@ export const Details = ({ showPrs }: any) => {
             title="Feature"
             actions={
               <>
-                <IconButton size="small">
+                <IconButton color="info" size="small">
                   <DeleteOutlineOutlinedIcon />
                 </IconButton>
               </>
