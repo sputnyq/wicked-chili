@@ -1,48 +1,41 @@
 import {
   Box,
-  Button,
   Card,
-  CardContent,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   Divider,
   Grid2,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Stack,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 import CallSplitIcon from "@mui/icons-material/CallSplit";
 
-import DraftsIcon from "@mui/icons-material/Drafts";
-
-import CancelIcon from "@mui/icons-material/Cancel";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ErrorIcon from "@mui/icons-material/Error";
-
-import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import SyncOutlinedIcon from "@mui/icons-material/SyncOutlined";
 import { StatusesBox } from "../../StatusesBox";
+import { Status } from "./Status";
+
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export const Details = ({ showPrs }: any) => {
   const successColor = "success";
 
   return (
     <Box>
-      <Grid2 container spacing={1.5} alignItems={"stretch"}>
+      <Grid2 container spacing={1} alignItems={"stretch"}>
         {showPrs && (
           <>
             <Grid2 size={6}>
-              <StatusesBox title="Implementation" actions={null}>
+              <StatusesBox
+                title="Implementation"
+                actions={
+                  <IconButton size="small">
+                    <GitHubIcon />
+                  </IconButton>
+                }
+              >
                 <Box
                   paddingY={1}
                   display={"flex"}
@@ -57,13 +50,6 @@ export const Details = ({ showPrs }: any) => {
             </Grid2>
             <Grid2 size={6}>
               <StatusesBox title="Deployment" actions={null}>
-                <Typography
-                  variant="subtitle2"
-                  color="textSecondary"
-                  marginBottom={1}
-                >
-                  Deployment Pull Requests
-                </Typography>
                 <Box
                   paddingY={1}
                   display={"flex"}
@@ -145,11 +131,9 @@ export const Details = ({ showPrs }: any) => {
           <StatusesBox
             title="Development"
             actions={
-              <Stack direction="row" spacing={1}>
-                <IconButton size="small">
-                  <CallSplitIcon />
-                </IconButton>
-              </Stack>
+              <IconButton size="small">
+                <CallSplitIcon />
+              </IconButton>
             }
           ></StatusesBox>
         </Grid2>
@@ -157,14 +141,14 @@ export const Details = ({ showPrs }: any) => {
           <StatusesBox
             title="Feature"
             actions={
-              <Stack direction={"row"} spacing={1}>
+              <>
                 <IconButton size="small">
                   <SyncOutlinedIcon />
                 </IconButton>
                 <IconButton size="small">
                   <DeleteOutlineOutlinedIcon />
                 </IconButton>
-              </Stack>
+              </>
             }
           ></StatusesBox>
         </Grid2>
@@ -205,109 +189,6 @@ export const Env = ({ title, successColor }: any) => {
         </Box>
       </Box>
     </Card>
-  );
-};
-
-const Status = ({ color, title, endIcon }: any) => {
-  const [open, setOpen] = useState(false);
-
-  let icon = null;
-
-  switch (color) {
-    case "success":
-      icon = <CheckCircleIcon color="success" />;
-      break;
-    case "error":
-      icon = <CancelIcon color="error" />;
-      break;
-    case "warning":
-      icon = <ErrorIcon color="warning" />;
-      break;
-    case "info":
-      icon = <CheckCircleIcon color="info" />;
-      break;
-    default:
-      icon = <CheckCircleIcon color="disabled" />;
-  }
-  return (
-    <>
-      <Dialog
-        fullWidth
-        maxWidth="lg"
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
-          <Grid2 container spacing={1} alignItems={"stretch"}>
-            <Grid2 size={8}>
-              <Card>
-                <CardContent>
-                  <Box display={"flex"} flexDirection={"column"} gap={1}>
-                    <Typography variant="h6">Details</Typography>
-                    <InfoBlock />
-                    <InfoBlock />
-                    <InfoBlock />
-                    <InfoBlock />
-                    <InfoBlock />
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid2>
-            <Grid2 size={4}>
-              <Card sx={{ height: "100%" }}>
-                <CardContent>
-                  <List>
-                    <Action />
-                    <Action />
-                    <Action />
-                    <Action />
-                    <Action />
-                    <Action />
-                  </List>
-                </CardContent>
-              </Card>
-            </Grid2>
-          </Grid2>
-        </DialogContent>
-      </Dialog>
-      <Box>
-        <Button
-          size="small"
-          onClick={() => setOpen(true)}
-          startIcon={icon}
-          endIcon={endIcon}
-        >
-          {title}
-        </Button>
-      </Box>
-    </>
-  );
-};
-
-const Action = () => {
-  return (
-    <ListItem disablePadding>
-      <ListItemButton>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Action" />
-      </ListItemButton>
-    </ListItem>
-  );
-};
-
-const InfoBlock = () => {
-  return (
-    <Box width={"100%"} paddingY={1}>
-      <Typography variant="body1" color="info">
-        Tracked Revision
-      </Typography>
-      <Typography variant="body2">
-        refs/heads/main a26e8b2fe8e7829892307bc32f5349ac1823687a
-      </Typography>
-    </Box>
   );
 };
 
