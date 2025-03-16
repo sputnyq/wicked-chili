@@ -1,33 +1,32 @@
 import {
   Box,
   Button,
-  Card as MuiCard,
+  CardProps,
   Chip,
   Dialog,
   DialogContent,
   DialogTitle,
   Grid2,
   IconButton,
-  Link,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Card as MuiCard,
   Stack,
   Typography,
-  CardProps,
 } from "@mui/material";
 
 import { useState } from "react";
 
 import DraftsIcon from "@mui/icons-material/Drafts";
 
+import { OpenInNew } from "@mui/icons-material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CloseIcon from "@mui/icons-material/Close";
 import ErrorIcon from "@mui/icons-material/Error";
-import { OpenInNew } from "@mui/icons-material";
 
 const Card = (props: CardProps) => {
   return (
