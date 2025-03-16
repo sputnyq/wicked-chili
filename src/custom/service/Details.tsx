@@ -143,9 +143,6 @@ export const Details = ({ showPrs }: any) => {
             actions={
               <>
                 <IconButton size="small">
-                  <SyncOutlinedIcon />
-                </IconButton>
-                <IconButton size="small">
                   <DeleteOutlineOutlinedIcon />
                 </IconButton>
               </>
