@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  Divider,
   Grid2,
   IconButton,
   List,
@@ -21,6 +22,10 @@ import {
 import { useState } from "react";
 
 import DraftsIcon from "@mui/icons-material/Drafts";
+
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 
 import { OpenInNew } from "@mui/icons-material";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -96,9 +101,22 @@ export const Status = ({ color, title, endIcon }: any) => {
             <Grid2 size={4}>
               <Card>
                 <List>
+                  <Action
+                    text="Go To Instance"
+                    icon={<OpenInNewOutlinedIcon />}
+                  />
+                  <Action
+                    text="sandbox-dev-k8s"
+                    icon={<ContentCopyOutlinedIcon />}
+                  />
+                  <Divider />
                   <Action />
                   <Action />
-                  <Action />
+                  <Divider />
+                  <Action
+                    text="Delete Status"
+                    icon={<DeleteOutlineOutlinedIcon />}
+                  />
                 </List>
               </Card>
             </Grid2>
@@ -136,9 +154,7 @@ const Action = (props: any) => {
   return (
     <ListItem disablePadding disableGutters>
       <ListItemButton>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
+        <ListItemIcon>{props.icon ? props.icon : <DraftsIcon />}</ListItemIcon>
         <ListItemText primary={props.text ?? "Action"} />
       </ListItemButton>
     </ListItem>
